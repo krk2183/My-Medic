@@ -46,10 +46,14 @@ class PredictionRequest(BaseModel):
     start_date: str
     days_ahead: int = 7
 
+class ConditionRisk(BaseModel):
+    condition: str
+    probability: float
+
 class PredictionResponse(BaseModel):
     predictions: Dict[str, Dict[str, float]]
     summary: Dict[str, Dict[str, float]]
-    high_risk_periods: Dict[str, List[Dict[str, float]]]
+    high_risk_periods: Dict[str, List[ConditionRisk]]
     seasonal_insights: Dict
 
 class MetricsResponse(BaseModel):
