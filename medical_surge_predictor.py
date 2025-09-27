@@ -158,10 +158,10 @@ class MedicalSurgeAnalyzer:
             'month_sin', 'month_cos', 'day_sin', 'day_cos', 'AGE'
         ]
         
-        # Handle missing values
+        # Handle missing values and ensure numeric types
         for col in self.condition_columns:
             if col in self.df.columns:
-                self.df[col] = self.df[col].fillna(0)
+                self.df[col] = pd.to_numeric(self.df[col], errors='coerce').fillna(0).astype(int)
         
         print("Data preprocessing completed!")
         
