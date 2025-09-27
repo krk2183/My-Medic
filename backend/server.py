@@ -124,11 +124,11 @@ async def predict_surge(request: PredictionRequest):
         high_risk_periods = {}
         for date, preds in predictions.items():
             high_risk = [
-                {'condition': condition, 'probability': prob} 
+                ConditionRisk(condition=condition, probability=prob) 
                 for condition, prob in preds.items() if prob > 0.3
             ]
             if high_risk:
-                high_risk_periods[date] = sorted(high_risk, key=lambda x: x['probability'], reverse=True)[:5]
+                high_risk_periods[date] = sorted(high_risk, key=lambda x: x.probability, reverse=True)[:5]
         
         # Seasonal insights
         start_dt = datetime.strptime(request.start_date, '%Y-%m-%d')
