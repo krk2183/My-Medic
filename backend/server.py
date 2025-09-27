@@ -331,6 +331,12 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
+@app.on_event("startup")
+async def startup_event():
+    """Initialize the model on startup"""
+    if not initialize_model():
+        logger.error("Failed to initialize medical model on startup")
+
 @app.on_event("shutdown")
 async def shutdown_db_client():
     client.close()
