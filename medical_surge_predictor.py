@@ -91,9 +91,9 @@ class MedicalSurgeAnalyzer:
         self.df = pd.read_csv(self.data_path)
         print(f"Loaded {len(self.df)} records with {len(self.df.columns)} columns")
         
-        # Convert dates
-        self.df['D.O.A'] = pd.to_datetime(self.df['D.O.A'], format='%m/%d/%Y')
-        self.df['D.O.D'] = pd.to_datetime(self.df['D.O.D'], format='%m/%d/%Y')
+        # Convert dates (handle mixed formats)
+        self.df['D.O.A'] = pd.to_datetime(self.df['D.O.A'], format='mixed', dayfirst=False)
+        self.df['D.O.D'] = pd.to_datetime(self.df['D.O.D'], format='mixed', dayfirst=False)
         
         # Extract temporal features from admission date
         self.df['year'] = self.df['D.O.A'].dt.year
