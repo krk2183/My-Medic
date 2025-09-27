@@ -41,6 +41,29 @@ class StatusCheck(BaseModel):
 class StatusCheckCreate(BaseModel):
     client_name: str
 
+# Medical Surge Prediction Models
+class PredictionRequest(BaseModel):
+    start_date: str
+    days_ahead: int = 7
+
+class PredictionResponse(BaseModel):
+    predictions: Dict[str, Dict[str, float]]
+    summary: Dict[str, Dict[str, float]]
+    high_risk_periods: Dict[str, List[Dict[str, float]]]
+    seasonal_insights: Dict
+
+class MetricsResponse(BaseModel):
+    total_conditions: int
+    high_risk_conditions: int
+    avg_risk_score: float
+    peak_risk_date: str
+    seasonal_trend: str
+
+class ConditionFilterRequest(BaseModel):
+    conditions: List[str]
+    start_date: str
+    days_ahead: int = 7
+
 # Add your routes to the router instead of directly to app
 @api_router.get("/")
 async def root():
