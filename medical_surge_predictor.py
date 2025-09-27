@@ -91,9 +91,32 @@ class MedicalSurgeAnalyzer:
         self.df = pd.read_csv(self.data_path)
         print(f"Loaded {len(self.df)} records with {len(self.df.columns)} columns")
         
-        # Convert dates (handle mixed formats)
-        self.df['D.O.A'] = pd.to_datetime(self.df['D.O.A'], format='mixed', dayfirst=False)
-        self.df['D.O.D'] = pd.to_datetime(self.df['D.O.D'], format='mixed', dayfirst=False)
+        # Convert dates (handle mixed formats with error handling)
+        def parse_date_safely(date_str):
+            """Parse dates with multiple format attempts"""
+            if pd.isna(date_str):
+                return None
+            try:
+                # Try common formats
+                formats = ['%m/%d/%Y', '%d/%m/%Y', '%m-%d-%Y', '%d-%m-%Y']
+                for fmt in formats:
+                    try:
+                        return pd.to_datetime(date_str, format=fmt)
+                    except:
+                        continue
+                # If all formats fail, try pandas default parsing
+                return pd.to_datetime(date_str, dayfirst=False)
+            except:
+                return None
+        
+        print("Parsing dates...")
+        self.df['D.O.A'] = self.df['D.O.A'].apply(parse_date_safely)
+        self.df['D.O.D'] = self.df['D.O.D'].apply(parse_date_safely)
+        
+        # Remove rows with unparseable dates
+        initial_len = len(self.df)
+        self.df = self.df.dropna(subset=['D.O.A', 'D.O.D'])
+        print(f"Removed {initial_len - len(self.df)} rows with invalid dates")
         
         # Extract temporal features from admission date
         self.df['year'] = self.df['D.O.A'].dt.year
