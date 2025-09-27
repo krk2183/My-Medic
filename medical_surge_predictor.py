@@ -215,7 +215,7 @@ class MedicalSurgeAnalyzer:
             # Calculate condition counts for this window
             for condition in self.condition_columns:
                 if condition in window_data.columns:
-                    count = window_data[condition].sum()
+                    count = int(window_data[condition].sum())
                     features[f'{condition}_count'] = count
                 else:
                     features[f'{condition}_count'] = 0
