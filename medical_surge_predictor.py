@@ -414,7 +414,7 @@ class MedicalSurgeAnalyzer:
     
     def load_model(self, model_path='medical_surge_model.pth'):
         """Load a pre-trained model"""
-        checkpoint = torch.load(model_path)
+        checkpoint = torch.load(model_path, weights_only=False)
         
         # Rebuild model architecture
         input_size = 11  # Number of features
