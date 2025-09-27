@@ -1,0 +1,41 @@
+MEDICAL SURGE PREDICTION REPORT
+==================================================
+
+Prediction Period: March 2024 - March 2024
+Season: Spring
+
+TOP 10 HIGH-RISK CONDITIONS:
+------------------------------
+ 1. PSVT                           0.150
+ 2. SSS                            0.144
+ 3. SEVERE ANAEMIA                 0.140
+ 4. CVA BLEED                      0.131
+ 5. ATYPICAL CHEST PAIN            0.115
+ 6. VT                             0.086
+ 7. INFECTIVE ENDOCARDITIS         0.086
+ 8. CONGENITAL                     0.084
+ 9. ORTHOSTATIC                    0.083
+10. PULMONARY EMBOLISM             0.082
+
+DAILY HIGH-RISK PERIODS:
+------------------------------
+
+CONDITION SUMMARY STATISTICS:
+----------------------------------------
+Condition                      Avg Risk   Max Risk   High Days 
+------------------------------------------------------------
+PSVT                           0.150      0.160      0         
+SSS                            0.144      0.156      0         
+SEVERE ANAEMIA                 0.140      0.159      0         
+CVA BLEED                      0.131      0.156      0         
+ATYPICAL CHEST PAIN            0.115      0.134      0         
+VT                             0.086      0.107      0         
+INFECTIVE ENDOCARDITIS         0.086      0.100      0         
+CONGENITAL                     0.084      0.094      0         
+ORTHOSTATIC                    0.083      0.109      0         
+PULMONARY EMBOLISM             0.082      0.104      0         
+NEURO CARDIOGENIC SYNCOPE      0.082      0.101      0         
+AF                             0.078      0.092      0         
+CHEST INFECTION                0.073      0.088      0         
+DVT                            0.066      0.076      0         
+STABLE ANGINA                  0.060      0.073      0         
