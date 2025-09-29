@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-# Here are your Instructions
-=======
 ## 🌟 **My Medic**
 
 ### 📊 **1. Interactive Charts & Visualizations**
