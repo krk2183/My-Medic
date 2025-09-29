@@ -5,8 +5,8 @@ Medical Surge Prediction System using PyTorch
 This system predicts which medical conditions will surge on given dates
 using historical admission data with temporal and seasonal features.
 
-Author: AI Assistant
-Created: January 2025
+Author: Krk2183
+Created: September 2025
 """
 
 import pandas as pd

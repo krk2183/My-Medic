@@ -1,0 +1,19 @@
+cd backend
+# Activate your virtual environment if not already
+venv\Scripts\activate
+
+python -m uvicorn main:app --reload
+
+cd frontend
+yarn start
+
+
+PRODUCTION ONLY
+
+cd frontend
+yarn build
+
+yarn global add serve
+serve -s build
+
+

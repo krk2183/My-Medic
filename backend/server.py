@@ -3,6 +3,7 @@ from dotenv import load_dotenv
 from starlette.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
 import os
+from fastapi.middleware.cors import CORSMiddleware
 import logging
 from pathlib import Path
 from pydantic import BaseModel, Field
@@ -27,6 +28,15 @@ db = client[os.environ['DB_NAME']]
 
 # Create the main app without a prefix
 app = FastAPI()
+
+# Determine allowed origins
+cors_origins_env = os.environ.get("CORS_ORIGINS", "*")
+if cors_origins_env == "*" or cors_origins_env.lower() == "all":
+    origins = ["*"]
+    allow_credentials = False  # Cannot use credentials with wildcard
+else:
+    origins = [o.strip() for o in cors_origins_env.split(",")]
+    allow_credentials = True  # Only allowed when specific origins are listed
 
 # Create a router with the /api prefix
 api_router = APIRouter(prefix="/api")
@@ -320,10 +330,17 @@ async def get_status_checks():
 # Include the router in the main app
 app.include_router(api_router)
 
+# IN HERE???
+origins = [
+    "http://localhost:3000",  # your local frontend
+    "https://disease-predict-2.preview.emergentagent.com"  # optional: allow same domain
+]
+
+
 app.add_middleware(
     CORSMiddleware,
-    allow_credentials=True,
-    allow_origins=os.environ.get('CORS_ORIGINS', '*').split(','),
+    allow_origins=origins,
+    allow_credentials=allow_credentials,
     allow_methods=["*"],
     allow_headers=["*"],
 )
