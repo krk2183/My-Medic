@@ -64,7 +64,7 @@ const MedicalDashboard = () => {
   const [selectedConditions, setSelectedConditions] = useState([]);
   const [activeTab, setActiveTab] = useState('overview');
 
-  const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8001';
+  const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8000';
 
   // Fetch data on component mount and when date/days change
   useEffect(() => {

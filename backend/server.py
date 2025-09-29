@@ -332,8 +332,8 @@ app.include_router(api_router)
 
 # IN HERE???
 origins = [
-    "http://localhost:3000",  # your local frontend
-    "https://disease-predict-2.preview.emergentagent.com"  # optional: allow same domain
+    "http://localhost:3000"  # your local frontend
+    # "https://disease-predict-2.preview.emergentagent.com"  # optional: allow same domain
 ]
 
 
